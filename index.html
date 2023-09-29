@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="MenuApp">
+<head>
+  <title>Restaurant Menu App</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.30/angular-ui-router.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <ul>
+      <li><a ui-sref="home">Home</a></li>
+      <li><a ui-sref="categories">Categories</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main content area -->
+  <div class="container">
+    <div ui-view></div>
+  </div>
+
+  <!-- Templates -->
+  <script type="text/ng-template" id="templates/home.template.html">
+    <h1>Welcome to our Restaurant</h1>
+    <p></p>
+  </script>
+
+  <script type="text/ng-template" id="templates/categories-list.template.html">
+    <h1>Categories</h1>
+    <ul>
+      <li ng-repeat="category in categories">
+        <a ui-sref="items({ categoryShortName: category.short_name })">{{ category.name }}</a>
+      </li>
+    </ul>
+  </script>
+
+  <script type="text/ng-template" id="templates/items-list.template.html">
+    <h1>Menu Items for {{ categoryShortName }}</h1>
+    <ul>
+      <li ng-repeat="item in items">
+        {{ item.name }} - {{ item.description }}
+      </li>
+    </ul>
+  </script>
+
+  <!-- JavaScript -->
+  <script src="menuapp.module.js"></script>
+  <script src="data.module.js"></script>
+  <script src="menudata.service.js"></script>
+  <script src="categories.component.js"></script>
+  <script src="items.component.js"></script>
+  <script src="routes.js"></script>
+
+  <!-- Initialization -->
+
+</body>
+</html>
